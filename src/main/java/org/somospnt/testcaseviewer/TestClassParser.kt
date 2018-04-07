@@ -8,7 +8,7 @@ import java.util.stream.Collectors.toList
 object TestClassParser {
 
     fun parse(testClassJava: String): TestClass {
-        val testClass = JavaParser.parse(testClassJava).types[0]
+        val testClass = JavaParser.parse(testClassJava).types.first()
         return TestClass(testClass.nameAsString,
                 testClass.methods
                         .filter { it.annotations.any { it.nameAsString == "Test" } }
