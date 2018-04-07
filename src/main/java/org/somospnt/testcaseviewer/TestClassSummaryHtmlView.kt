@@ -12,11 +12,12 @@ import org.apache.commons.lang.StringUtils.splitByCharacterTypeCamelCase
 object TestClassSummaryHtmlView {
 
     fun render(testSuite: TestClass): String {
-        val mf = DefaultMustacheFactory()
-        val mustache = mf.compile("testClassViewTemplate.html.mustache")
         val testSuiteGraph = TestClassSummary.from(testSuite)
         testSuiteGraph.methods.forEach { it.scenarios.forEach(TestClassSummaryHtmlView::formatScenario) }
-        return mustache.execute(StringWriter(), testSuiteGraph).toString()
+        return DefaultMustacheFactory()
+                .compile("testClassViewTemplate.html.mustache")
+                .execute(StringWriter(), testSuiteGraph)
+                .toString()
     }
 
     private fun formatScenario(scenario: TestClassSummary.Scenario) {
