@@ -26,7 +26,6 @@ object TestClassSummaryHtmlView {
     }
 
     private fun camelCaseToNaturalLanguage(text: String?): String {
-        val words = splitByCharacterTypeCamelCase(text)
-        return join(words, ' ').toLowerCase()
+        return splitByCharacterTypeCamelCase(text).joinToString(separator = " ").toLowerCase()
     }
 }
