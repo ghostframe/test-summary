@@ -9,7 +9,7 @@ class TestClassSummaryHtmlViewTest {
 
     @Test
     fun render_withTestClassText_returnsExpectedHtml() {
-        assertThat(TestClassSummaryHtmlView.render(contentOfResource("testClass.txt")))
-                .isEqualTo(contentOfResource("testClassView.html"))
+        val expectedHtml = contentOfResource("testClassView.html")
+        assertThat(TestClassSummaryHtmlView.render(contentOfResource("testClass.txt"))).isEqualTo(expectedHtml)
     }
 }

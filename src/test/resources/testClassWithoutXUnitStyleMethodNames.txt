@@ -1,0 +1,31 @@
+package com.saenz.clientes.api.service;
+
+import com.saenz.clientes.api.ApplicationTests;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.Month;
+import static java.util.Arrays.asList;
+import java.util.Collections;
+import java.util.List;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class TestClass extends ApplicationTests {
+
+    @Autowired
+    private Something something;
+
+    @Test
+    public void aTest() {
+    }
+
+    @Test
+    public void method_shouldDoThis() {
+    }
+
+    @Test
+    public void method_shouldAcceptNulls() {
+    }
+
+}

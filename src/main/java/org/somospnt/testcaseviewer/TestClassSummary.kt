@@ -10,17 +10,23 @@ data class TestClassSummary(val className: String, val methodSummaries: List<Tes
 
         fun from(testClass: TestClass): TestClassSummary {
             return TestClassSummary(testClass.name,
-                    testClass.testMethods
-                            .groupBy(TestClass.TestMethod::testedMethodName)
+                    testClass.testMethodNames
+                            .map{TestMethodDescription(it)}
+                            .groupBy {it.testedMethodName}
                             .toSortedMap()
                             .map(this::createMethodSummary))
         }
 
-        private fun createMethodSummary(testedMethodNameToCases: Map.Entry<String, List<TestClass.TestMethod>>): MethodSummary {
+        private fun createMethodSummary(testedMethodNameToCases: Map.Entry<String, List<TestMethodDescription>>): MethodSummary {
             return MethodSummary(testedMethodNameToCases.key,
                     testedMethodNameToCases.value.map { Scenario(it.scenario, it.outcome) })
         }
 
     }
 
+    private class TestMethodDescription(testMethodName: String) {
+        val testedMethodName = testMethodName.split("_")[0]
+        val scenario = testMethodName.split("_")[1]
+        val outcome = testMethodName.split("_")[2]
+    }
 }

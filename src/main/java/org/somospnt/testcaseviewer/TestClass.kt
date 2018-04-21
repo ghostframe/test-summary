@@ -1,7 +1,19 @@
 package org.somospnt.testcaseviewer
 
-data class TestClass(val name: String, val testMethods: List<TestClass.TestMethod>) {
+import com.github.javaparser.JavaParser
+import com.github.javaparser.ast.body.MethodDeclaration
 
-    data class TestMethod(val testedMethodName: String, val scenario: String, val outcome: String)
+data class TestClass(val name: String, val testMethodNames: List<String>) {
 
+    companion object {
+
+        fun parse(testClassJava: String): TestClass {
+            val testClassDeclaration = JavaParser.parse(testClassJava).types.first()
+            return TestClass(testClassDeclaration.nameAsString,
+                    testClassDeclaration.methods
+                            .filter { it.annotations.any { it.nameAsString == "Test" } }
+                            .map{it.nameAsString})
+        }
+
+    }
 }

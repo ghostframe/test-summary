@@ -10,9 +10,9 @@ class TestClassSummaryTest {
     @Test
     fun from_testClass_returnsSummaryGroupingScenariosByMethodName() {
         val testClass = TestClass("TestClass", asList(
-                TestClass.TestMethod("method1", "withScenarioA", "returnsValueA"),
-                TestClass.TestMethod("method1", "withScenarioB", "returnsValueB"),
-                TestClass.TestMethod("method2", "withScenarioA", "returnsValueA")))
+                "method1_withScenarioA_returnsValueA",
+                "method1_withScenarioB_returnsValueB",
+                "method2_withScenarioA_returnsValueA"))
 
         val testClassSummary = TestClassSummary.from(testClass)
         val expectedTestClassSummary = TestClassSummary(
