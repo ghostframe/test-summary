@@ -8,11 +8,8 @@ import org.somospnt.testcaseviewer.Util.contentOfResource
 class TestClassSummaryHtmlViewTest {
 
     @Test
-    fun new_buildsHtml() {
-        val testClass = TestClass("TestClass", asList(
-                TestClass.TestMethod("method1", "withScenarioA", "returnsValueA"),
-                TestClass.TestMethod("method1", "withScenarioB", "returnsValueB"),
-                TestClass.TestMethod("method2", "withScenarioA", "returnsValueA")))
-        assertThat(TestClassSummaryHtmlView.render(testClass)).isEqualTo(contentOfResource("testClassView.html"))
+    fun render_withTestClassText_returnsExpectedHtml() {
+        assertThat(TestClassSummaryHtmlView.render(contentOfResource("testClass.txt")))
+                .isEqualTo(contentOfResource("testClassView.html"))
     }
 }

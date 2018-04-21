@@ -1,10 +1,10 @@
 package org.somospnt.testcaseviewer
 
-class TestClassSummary(val className: String, val methodSummaries: List<TestClassSummary.MethodSummary>) {
+data class TestClassSummary(val className: String, val methodSummaries: List<TestClassSummary.MethodSummary>) {
 
-    class MethodSummary(val methodName: String, val scenarios: List<Scenario>)
+    data class MethodSummary(val methodName: String, val scenarios: List<Scenario>)
 
-    class Scenario(var description: String?, var outcome: String?)
+    data class Scenario(var description: String?, var outcome: String?)
 
     companion object {
 

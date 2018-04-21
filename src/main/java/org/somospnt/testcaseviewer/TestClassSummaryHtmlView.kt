@@ -7,7 +7,8 @@ import org.apache.commons.lang.StringUtils.splitByCharacterTypeCamelCase
 
 object TestClassSummaryHtmlView {
 
-    fun render(testClass: TestClass): String {
+    fun render(testClassCode: String): String {
+        val testClass = TestClassParser.parse(testClassCode)
         val testClassSummary = TestClassSummary.from(testClass)
         testClassSummary.methodSummaries.forEach { it.scenarios.forEach(TestClassSummaryHtmlView::formatScenario) }
         return DefaultMustacheFactory()

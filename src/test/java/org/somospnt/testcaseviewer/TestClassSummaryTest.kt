@@ -8,23 +8,25 @@ import org.junit.Test
 class TestClassSummaryTest {
 
     @Test
-    fun testSuiteGraph() {
+    fun from_testClass_returnsSummaryGroupingScenariosByMethodName() {
         val testClass = TestClass("TestClass", asList(
                 TestClass.TestMethod("method1", "withScenarioA", "returnsValueA"),
                 TestClass.TestMethod("method1", "withScenarioB", "returnsValueB"),
                 TestClass.TestMethod("method2", "withScenarioA", "returnsValueA")))
 
         val testClassSummary = TestClassSummary.from(testClass)
-        assertThat(testClassSummary.className).isEqualTo(testClass.name)
-
-        val method1 = testClassSummary.methodSummaries[0]
-        assertThat(method1.methodName).isEqualTo("method1")
-        assertThat(method1.scenarios).extracting("description", "outcome")
-                .containsExactly(tuple("withScenarioA", "returnsValueA"),
-                        tuple("withScenarioB", "returnsValueB"))
-        val method2 = testClassSummary.methodSummaries[1]
-        assertThat(method2.methodName).isEqualTo("method2")
-        assertThat(method2.scenarios).extracting("description", "outcome")
-                .containsExactly(tuple("withScenarioA", "returnsValueA"))
+        val expectedTestClassSummary = TestClassSummary(
+                testClass.name, asList(
+                TestClassSummary.MethodSummary(
+                        "method1", asList(
+                        TestClassSummary.Scenario("withScenarioA", "returnsValueA"),
+                        TestClassSummary.Scenario("withScenarioB", "returnsValueB"))
+                ),
+                TestClassSummary.MethodSummary(
+                        "method2", asList(
+                        TestClassSummary.Scenario("withScenarioA", "returnsValueA"))
+                ))
+        )
+        assertThat(testClassSummary).isEqualTo(expectedTestClassSummary)
     }
 }
