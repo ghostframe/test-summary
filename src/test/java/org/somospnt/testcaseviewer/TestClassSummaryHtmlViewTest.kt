@@ -9,10 +9,10 @@ class TestClassSummaryHtmlViewTest {
 
     @Test
     fun new_buildsHtml() {
-        val testSuite = TestClass("TestClass", asList(
-                TestClass.Case("method1", "withScenarioA", "returnsValueA"),
-                TestClass.Case("method1", "withScenarioB", "returnsValueB"),
-                TestClass.Case("method2", "withScenarioA", "returnsValueA")))
-        assertThat(TestClassSummaryHtmlView.render(testSuite)).isEqualTo(contentOfResource("testClassView.html"))
+        val testClass = TestClass("TestClass", asList(
+                TestClass.TestMethod("method1", "withScenarioA", "returnsValueA"),
+                TestClass.TestMethod("method1", "withScenarioB", "returnsValueB"),
+                TestClass.TestMethod("method2", "withScenarioA", "returnsValueA")))
+        assertThat(TestClassSummaryHtmlView.render(testClass)).isEqualTo(contentOfResource("testClassView.html"))
     }
 }

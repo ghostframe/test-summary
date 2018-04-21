@@ -1,20 +1,20 @@
 <html>
     <head>
-        <title>{{name}}</title>
+        <title>{{className}}</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     </head>
     <body>
         <div class="container">
-            <h1>{{name}}</h1>
+            <h1>{{className}}</h1>
             <hr>
-            {{#methods}}
-            <h3>{{name}}</h3>
+            {{#methodSummaries}}
+            <h3>{{methodName}}</h3>
             <ul>
                 {{#scenarios}}
                 <li>{{description}} &rarr; {{outcome}}</li>
                 {{/scenarios}}
             </ul>
-            {{/methods}}
+            {{/methodSummaries}}
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

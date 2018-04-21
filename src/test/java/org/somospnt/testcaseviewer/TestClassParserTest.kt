@@ -11,9 +11,9 @@ class TestClassParserTest {
     fun parse_withTestClass_returnsTestCases() {
         assertThat(TestClassParser.parse(contentOfResource("testClass.txt")))
                 .isEqualToComparingFieldByFieldRecursively(TestClass("TestClass", asList(
-                        TestClass.Case("method1", "withScenarioA", "returnsValueA"),
-                        TestClass.Case("method1", "withScenarioB", "returnsValueB"),
-                        TestClass.Case("method2", "withScenarioA", "returnsValueA")))
+                        TestClass.TestMethod("method1", "withScenarioA", "returnsValueA"),
+                        TestClass.TestMethod("method1", "withScenarioB", "returnsValueB"),
+                        TestClass.TestMethod("method2", "withScenarioA", "returnsValueA")))
                 )
     }
 

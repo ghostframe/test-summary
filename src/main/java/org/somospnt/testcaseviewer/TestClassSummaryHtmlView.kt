@@ -1,22 +1,18 @@
 package org.somospnt.testcaseviewer
 
 import com.github.mustachejava.DefaultMustacheFactory
-import com.github.mustachejava.Mustache
-import com.github.mustachejava.MustacheFactory
 import java.io.StringWriter
-import lombok.SneakyThrows
 import org.apache.commons.lang.StringUtils.capitalize
-import org.apache.commons.lang.StringUtils.join
 import org.apache.commons.lang.StringUtils.splitByCharacterTypeCamelCase
 
 object TestClassSummaryHtmlView {
 
-    fun render(testSuite: TestClass): String {
-        val testSuiteGraph = TestClassSummary.from(testSuite)
-        testSuiteGraph.methods.forEach { it.scenarios.forEach(TestClassSummaryHtmlView::formatScenario) }
+    fun render(testClass: TestClass): String {
+        val testClassSummary = TestClassSummary.from(testClass)
+        testClassSummary.methodSummaries.forEach { it.scenarios.forEach(TestClassSummaryHtmlView::formatScenario) }
         return DefaultMustacheFactory()
-                .compile("testClassViewTemplate.html.mustache")
-                .execute(StringWriter(), testSuiteGraph)
+                .compile("testClassSummaryViewTemplate.html.mustache")
+                .execute(StringWriter(), testClassSummary)
                 .toString()
     }
 

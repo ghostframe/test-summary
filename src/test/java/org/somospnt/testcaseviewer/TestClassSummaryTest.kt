@@ -9,21 +9,21 @@ class TestClassSummaryTest {
 
     @Test
     fun testSuiteGraph() {
-        val testSuite = TestClass("TestClass", asList(
-                TestClass.Case("method1", "withScenarioA", "returnsValueA"),
-                TestClass.Case("method1", "withScenarioB", "returnsValueB"),
-                TestClass.Case("method2", "withScenarioA", "returnsValueA")))
+        val testClass = TestClass("TestClass", asList(
+                TestClass.TestMethod("method1", "withScenarioA", "returnsValueA"),
+                TestClass.TestMethod("method1", "withScenarioB", "returnsValueB"),
+                TestClass.TestMethod("method2", "withScenarioA", "returnsValueA")))
 
-        val testSuiteGraph = TestClassSummary.from(testSuite)
-        assertThat(testSuiteGraph.name).isEqualTo(testSuite.name)
+        val testClassSummary = TestClassSummary.from(testClass)
+        assertThat(testClassSummary.className).isEqualTo(testClass.name)
 
-        val method1 = testSuiteGraph.methods.get(0)
-        assertThat(method1.name).isEqualTo("method1")
+        val method1 = testClassSummary.methodSummaries[0]
+        assertThat(method1.methodName).isEqualTo("method1")
         assertThat(method1.scenarios).extracting("description", "outcome")
                 .containsExactly(tuple("withScenarioA", "returnsValueA"),
                         tuple("withScenarioB", "returnsValueB"))
-        val method2 = testSuiteGraph.methods.get(1)
-        assertThat(method2.name).isEqualTo("method2")
+        val method2 = testClassSummary.methodSummaries[1]
+        assertThat(method2.methodName).isEqualTo("method2")
         assertThat(method2.scenarios).extracting("description", "outcome")
                 .containsExactly(tuple("withScenarioA", "returnsValueA"))
     }
