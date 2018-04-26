@@ -1,5 +1,6 @@
-package com.ghostframe.testcaseviewer
+package com.ghostframe.testcaseviewer.maven
 
+import com.ghostframe.testcaseviewer.TestClassSummaryHtmlView
 import org.apache.commons.io.FileUtils
 import org.apache.maven.plugin.AbstractMojo
 import org.apache.maven.plugins.annotations.LifecyclePhase
@@ -22,15 +23,20 @@ class TestCaseViewerMojo : AbstractMojo() {
     override fun execute() {
         Files.walk(testSourceDirectory!!.toPath())
                 .map(Path::toFile)
-                .filter{it.name.endsWith(".java")}
+                .filter { it.name.endsWith(".java") }
                 .forEach { writeSummaryForFile(it) }
     }
 
 
     private fun writeSummaryForFile(file: File) {
-        val fileRelativePath = file.relativeTo(testSourceDirectory!!).path
-        val fileRelativePathWithHtmlExtension = fileRelativePath.replace(".java", ".html")
-        val html = TestClassSummaryHtmlView.render(contentOf(file))
-        FileUtils.write(File("$outputDirectory\\$fileRelativePathWithHtmlExtension"), html, StandardCharsets.UTF_8)
+        try {
+            val fileRelativePath = file.relativeTo(testSourceDirectory!!).path
+            val fileRelativePathWithHtmlExtension = fileRelativePath.replace(".java", ".html")
+            val html = TestClassSummaryHtmlView.render(contentOf(file))
+            FileUtils.write(File("$outputDirectory\\$fileRelativePathWithHtmlExtension"), html, StandardCharsets.UTF_8)
+        } catch (ex: Exception) {
+            this.log.error(ex)
+        }
+
     }
 }
