@@ -17,16 +17,18 @@ data class TestClassSummary(val className: String, val methodSummaries: List<Tes
                             .map(this::createMethodSummary))
         }
 
-        private fun createMethodSummary(testedMethodNameToCases: Map.Entry<String, List<TestMethodDescription>>): MethodSummary {
-            return MethodSummary(testedMethodNameToCases.key,
-                    testedMethodNameToCases.value.map { Scenario(it.scenario, it.outcome) })
+        private fun createMethodSummary(testedMethodNameToMethodDescriptions: Map.Entry<String, List<TestMethodDescription>>): MethodSummary {
+            return MethodSummary(testedMethodNameToMethodDescriptions.key,
+                    testedMethodNameToMethodDescriptions.value
+                            .filter { !it.scenario.isEmpty()}
+                            .map { Scenario(it.scenario, it.outcome) })
         }
 
     }
 
     private class TestMethodDescription(testMethodName: String) {
         val testedMethodName = testMethodName.split("_")[0]
-        val scenario = testMethodName.split("_")[1]
-        val outcome = testMethodName.split("_")[2]
+        val scenario = testMethodName.split("_").elementAtOrElse(1, {""})
+        val outcome = testMethodName.split("_").elementAtOrElse(2, {""})
     }
 }

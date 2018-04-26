@@ -12,9 +12,9 @@ class TestClassSummaryTest {
         val testClass = TestClass("TestClass", asList(
                 "method1_withScenarioA_returnsValueA",
                 "method1_withScenarioB_returnsValueB",
-                "method2_withScenarioA_returnsValueA"))
-
-        val testClassSummary = TestClassSummary.from(testClass)
+                "method2_withScenarioA_returnsValueA",
+                "method2_shouldSupportNulls",
+                "unrelatedTest"))
         val expectedTestClassSummary = TestClassSummary(
                 testClass.name, asList(
                 TestClassSummary.MethodSummary(
@@ -24,9 +24,12 @@ class TestClassSummaryTest {
                 ),
                 TestClassSummary.MethodSummary(
                         "method2", asList(
-                        TestClassSummary.Scenario("withScenarioA", "returnsValueA"))
-                ))
-        )
-        assertThat(testClassSummary).isEqualTo(expectedTestClassSummary)
+                        TestClassSummary.Scenario("withScenarioA", "returnsValueA"),
+                        TestClassSummary.Scenario("shouldSupportNulls", ""))
+                ),
+                TestClassSummary.MethodSummary(
+                        "unrelatedTest", asList()
+                )))
+        assertThat(TestClassSummary.from(testClass)).isEqualTo(expectedTestClassSummary)
     }
 }

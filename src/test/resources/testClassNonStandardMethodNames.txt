@@ -17,15 +17,19 @@ public class TestClass extends ApplicationTests {
     private Something something;
 
     @Test
-    public void aTest() {
+    public void otherTest() {
     }
 
     @Test
-    public void method_shouldDoThis() {
+    public void method1_withScenarioA_returnsValueA() {
     }
 
     @Test
-    public void method_shouldAcceptNulls() {
+    public void method1_shouldDoThis() {
+    }
+
+    @Test
+    public void method1_shouldAcceptNulls() {
     }
 
 }

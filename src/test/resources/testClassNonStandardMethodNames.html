@@ -1,20 +1,21 @@
 <html>
     <head>
-        <title>{{className}}</title>
+        <title>TestClass</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     </head>
     <body>
         <div class="container">
-            <h1>{{className}}</h1>
+            <h1>TestClass</h1>
             <hr>
-            {{#methodSummaries}}
-            <h3>{{methodName}}</h3>
+            <h3>method1</h3>
             <ul>
-            {{#scenarios}}
-                <li>{{description}}{{#outcome}} &rarr; {{outcome}}{{/outcome}}</li>
-            {{/scenarios}}
+                <li>With scenario a &rarr; returns value a</li>
+                <li>Should do this</li>
+                <li>Should accept nulls</li>
             </ul>
-            {{/methodSummaries}}
+            <h3>otherTest</h3>
+            <ul>
+            </ul>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
