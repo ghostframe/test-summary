@@ -2,7 +2,7 @@ package com.ghostframe.testcaseviewer
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import com.ghostframe.testcaseviewer.Util.contentOfResource
+import com.ghostframe.testcaseviewer.Utils.contentOfResource
 
 class TestClassSummaryHtmlViewTest {
 
