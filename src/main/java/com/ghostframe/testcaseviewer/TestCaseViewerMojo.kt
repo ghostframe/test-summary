@@ -1,4 +1,4 @@
-package org.somospnt.testcaseviewer
+package com.ghostframe.testcaseviewer
 
 import org.apache.commons.io.FileUtils
 import org.apache.maven.plugin.AbstractMojo

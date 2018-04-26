@@ -1,6 +1,6 @@
-package org.somospnt.testcaseviewer
+package com.ghostframe.testcaseviewer
 
-data class TestClassSummary(val className: String, val methodSummaries: List<TestClassSummary.MethodSummary>) {
+data class TestClassSummary(val className: String, val methodSummaries: List<MethodSummary>) {
 
     data class MethodSummary(val methodName: String, val scenarios: List<Scenario>)
 
@@ -11,8 +11,8 @@ data class TestClassSummary(val className: String, val methodSummaries: List<Tes
         fun from(testClass: TestClass): TestClassSummary {
             return TestClassSummary(testClass.name,
                     testClass.testMethodNames
-                            .map{TestMethodDescription(it)}
-                            .groupBy {it.testedMethodName}
+                            .map { TestMethodDescription(it) }
+                            .groupBy { it.testedMethodName }
                             .toSortedMap()
                             .map(this::createMethodSummary))
         }
@@ -20,7 +20,7 @@ data class TestClassSummary(val className: String, val methodSummaries: List<Tes
         private fun createMethodSummary(testedMethodNameToMethodDescriptions: Map.Entry<String, List<TestMethodDescription>>): MethodSummary {
             return MethodSummary(testedMethodNameToMethodDescriptions.key,
                     testedMethodNameToMethodDescriptions.value
-                            .filter { !it.scenario.isEmpty()}
+                            .filter { !it.scenario.isEmpty() }
                             .map { Scenario(it.scenario, it.outcome) })
         }
 

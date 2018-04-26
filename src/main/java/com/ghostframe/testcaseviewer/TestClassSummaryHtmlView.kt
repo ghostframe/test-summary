@@ -1,4 +1,4 @@
-package org.somospnt.testcaseviewer
+package com.ghostframe.testcaseviewer
 
 import com.github.mustachejava.DefaultMustacheFactory
 import java.io.StringWriter

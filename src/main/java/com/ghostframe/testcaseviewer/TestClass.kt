@@ -1,4 +1,4 @@
-package org.somospnt.testcaseviewer
+package com.ghostframe.testcaseviewer
 
 import com.github.javaparser.JavaParser
 import com.github.javaparser.ast.body.MethodDeclaration
@@ -12,7 +12,7 @@ data class TestClass(val name: String, val testMethodNames: List<String>) {
             return TestClass(testClassDeclaration.nameAsString,
                     testClassDeclaration.methods
                             .filter { it.annotations.any { it.nameAsString == "Test" } }
-                            .map{it.nameAsString})
+                            .map { it.nameAsString })
         }
 
     }

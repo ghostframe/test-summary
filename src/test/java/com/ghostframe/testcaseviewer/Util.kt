@@ -1,4 +1,4 @@
-package org.somospnt.testcaseviewer
+package com.ghostframe.testcaseviewer
 
 import java.io.File
 import org.assertj.core.api.Assertions.contentOf

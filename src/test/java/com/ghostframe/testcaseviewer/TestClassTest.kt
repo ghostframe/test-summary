@@ -1,8 +1,8 @@
-package org.somospnt.testcaseviewer
+package com.ghostframe.testcaseviewer
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import org.somospnt.testcaseviewer.Util.contentOfResource
+import com.ghostframe.testcaseviewer.Util.contentOfResource
 import java.util.Arrays.asList
 
 class TestClassTest {
