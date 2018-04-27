@@ -28,7 +28,7 @@ In your `pom.xml`:
   </plugins>
 </build>
 ```
-- Add to your pluginRepositories the folder located in this repository for downloading the plugin:
+- Add this to your pluginRepositories for maven to download it from github:
 ```xml
 <pluginRepositories>
   <pluginRepository>
